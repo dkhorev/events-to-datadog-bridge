@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from '../../src/app.controller';
 import { AppService } from '../../src/app.service';
+import { MetricsModule } from '../../src/metrics/metrics.module';
+import { ConfigModule } from '@nestjs/config';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -8,6 +10,12 @@ describe('AppController', () => {
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
+      imports: [
+        MetricsModule,
+        ConfigModule.forRoot({
+          isGlobal: true,
+        }),
+      ],
       controllers: [AppController],
       providers: [AppService],
     }).compile();

@@ -16,10 +16,10 @@ describe('AppController (e2e)', () => {
   });
 
   it('/ (GET) should return code 200', () => {
-    return request(app.getHttpServer()).get('/').expect(200);
+    return request(app.getHttpServer()).post('/').expect(201);
   });
 
   it('/ (GET) should return empty body', () => {
-    return request(app.getHttpServer()).get('/').expect('');
+    return request(app.getHttpServer()).post('/').expect('');
   });
 });
