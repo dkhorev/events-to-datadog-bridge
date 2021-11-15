@@ -10,7 +10,7 @@ import { fastifyHelmet } from 'fastify-helmet';
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter({ logger: true, bodyLimit: 10000 }),
+    new FastifyAdapter({ logger: false, bodyLimit: 10000 }),
   );
 
   app.useGlobalPipes(new ValidationPipe());
