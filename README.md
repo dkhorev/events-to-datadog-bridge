@@ -40,6 +40,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Docker - build
+
+`DOCKER_BUILDKIT=1 docker build --pull -t events-to-datadog-bridge -f docker/Dockerfile .`
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
