@@ -26,14 +26,14 @@ jobs:
 
       - run: npm run lint
 
-      - run: npm run test:e2e
+      - run: npm run test:cov
         env:
           DATADOG_SERVICE_NAME: test-events-ci
           DATADOG_URL: app.datadoghq.eu
           DATADOG_API_KEY: test-key
           EVENT_NAME: test-event
 
-      - run: npm run test:cov
+      - run: npm run test:e2e -- --coverage
         env:
           DATADOG_SERVICE_NAME: test-events-ci
           DATADOG_URL: app.datadoghq.eu
@@ -46,4 +46,4 @@ jobs:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
           file: coverage/lcov.info
-          flags: main
+          flags: unit
