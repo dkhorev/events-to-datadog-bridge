@@ -24,7 +24,7 @@ describe('AppController', () => {
     appService = app.get<AppService>(AppService);
   });
 
-  describe('root', () => {
+  describe('new()', () => {
     it('should return empty body', () => {
       expect(appController.new()).toBe('');
     });
@@ -35,6 +35,12 @@ describe('AppController', () => {
       appController.new();
 
       expect(appService.new).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('health', () => {
+    it('should return OK', () => {
+      expect(appController.health()).toBe('OK');
     });
   });
 });

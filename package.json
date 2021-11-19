@@ -3,7 +3,7 @@
   "engines": {
     "node": ">=16 <17"
   },
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "private": true,
@@ -64,13 +64,18 @@
       "json",
       "ts"
     ],
-    "rootDir": "test",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t|j)s",
+      "!**/dist/**",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!.eslintrc.js",
+      "!**/test/e2e/**"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
