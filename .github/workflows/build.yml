@@ -25,14 +25,14 @@ jobs:
 
       - run: npm run lint
 
-      - run: npm run test:cov
+      - run: npm run test:e2e
         env:
           DATADOG_SERVICE_NAME: test-events-ci
           DATADOG_URL: app.datadoghq.eu
           DATADOG_API_KEY: test-key
           EVENT_NAME: test-event
 
-      - run: npm run test:e2e
+      - run: npm run test:cov
         env:
           DATADOG_SERVICE_NAME: test-events-ci
           DATADOG_URL: app.datadoghq.eu

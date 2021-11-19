@@ -77,7 +77,7 @@
       "!.eslintrc.js",
       "!**/test/e2e/**"
     ],
-    "coverageDirectory": "../coverage",
+    "coverageDirectory": "./coverage",
     "testEnvironment": "node"
   }
 }
