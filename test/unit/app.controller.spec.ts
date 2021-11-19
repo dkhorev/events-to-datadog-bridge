@@ -3,6 +3,7 @@ import { AppController } from '../../src/app.controller';
 import { AppService } from '../../src/app.service';
 import { MetricsModule } from '../../src/metrics/metrics.module';
 import { ConfigModule } from '@nestjs/config';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -14,6 +15,10 @@ describe('AppController', () => {
         MetricsModule,
         ConfigModule.forRoot({
           isGlobal: true,
+        }),
+        ThrottlerModule.forRoot({
+          ttl: 60,
+          limit: 60,
         }),
       ],
       controllers: [AppController],

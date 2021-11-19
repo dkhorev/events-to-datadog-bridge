@@ -1,33 +1,71 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
+import { Test } from '@nestjs/testing';
 import { AppModule } from '../../src/app.module';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 
 describe('AppController (e2e)', () => {
-  let app: INestApplication;
+  let app: NestFastifyApplication;
 
   beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
+    app = moduleRef.createNestApplication<NestFastifyApplication>(
+      new FastifyAdapter(),
+    );
+
     await app.init();
+    await app.getHttpAdapter().getInstance().ready();
+  });
+
+  afterEach(async () => {
+    await app.close();
   });
 
   it('/ (POST) should return code 201', () => {
-    return request(app.getHttpServer()).post('/').expect(201);
+    return app
+      .inject({
+        method: 'POST',
+        url: '/',
+      })
+      .then((result) => {
+        expect(result.statusCode).toStrictEqual(201);
+      });
   });
 
   it('/ (POST) should return empty body', () => {
-    return request(app.getHttpServer()).post('/').expect('');
+    return app
+      .inject({
+        method: 'POST',
+        url: '/',
+      })
+      .then((result) => {
+        expect(result.payload).toStrictEqual('');
+      });
   });
 
   it('/ (GET) should return code 201', () => {
-    return request(app.getHttpServer()).get('/').expect(200);
+    return app
+      .inject({
+        method: 'GET',
+        url: '/',
+      })
+      .then((result) => {
+        expect(result.statusCode).toStrictEqual(200);
+      });
   });
 
   it('/ (GET) should return OK', () => {
-    return request(app.getHttpServer()).get('/').expect('OK');
+    return app
+      .inject({
+        method: 'GET',
+        url: '/',
+      })
+      .then((result) => {
+        expect(result.payload).toStrictEqual('OK');
+      });
   });
 });
