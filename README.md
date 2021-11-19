@@ -8,7 +8,7 @@ Simple app to ingest events with http requests and bridge them to Datadog metric
 
 ## Goals
 - target of <1000ms response time with 100 RPS
-- events are relayed to datadog as metrics once a minute
+- events are relayed to datadog as metrics once a minute (`increment()` method)
 - rate limit of 60 requests per minute
 
 ## Installation
