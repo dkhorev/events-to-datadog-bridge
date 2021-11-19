@@ -39,7 +39,7 @@ jobs:
           DATADOG_API_KEY: test-key
           EVENT_NAME: test-event
 
-      - name: Codecov Frontend
+      - name: Codecov
         uses: codecov/codecov-action@v2
         with:
           fail_ci_if_error: true
