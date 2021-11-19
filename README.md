@@ -1,12 +1,12 @@
 # events-to-datadog-bridge
-Simple app to allow ingestion of events with http requests and bridge them to Datadog metrics API.
+Simple app to ingest events with http requests and bridge them to Datadog metrics API.
 
 ![schema](docs/events-to-datadog-bridge.drawio.png)
 
 
 ## Goals
 - target of <1000ms response time with 100 RPS
-
+- events are relayed to datadog as metrics once a minute
 
 ## Installation
 
@@ -43,6 +43,20 @@ $ npm run test:cov
 ## Docker - build
 
 `DOCKER_BUILDKIT=1 docker build --pull -t events-to-datadog-bridge -f docker/Dockerfile .`
+
+## Deployment
+
+### DigitalOcean Apps
+
+Just point wizard to the repo and provide required ENV credentials.
+
+I.e.:
+```bash
+DATADOG_SERVICE_NAME=events
+DATADOG_URL=app.datadoghq.eu
+DATADOG_API_KEY=...
+EVENT_NAME=new-order
+```
 
 ## License
 
