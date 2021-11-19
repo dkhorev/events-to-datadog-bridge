@@ -1,6 +1,8 @@
 # events-to-datadog-bridge
 Simple app to ingest events with http requests and bridge them to Datadog metrics API.
 
+[![codecov](https://codecov.io/gh/dkhorev/events-to-datadog-bridge/branch/main/graph/badge.svg?token=4F0LJGL8HG)](https://codecov.io/gh/dkhorev/events-to-datadog-bridge)
+
 ![schema](docs/events-to-datadog-bridge.drawio.png)
 
 
