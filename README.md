@@ -59,7 +59,27 @@ DATADOG_SERVICE_NAME=events
 DATADOG_URL=app.datadoghq.eu
 DATADOG_API_KEY=...
 EVENT_NAME=new-order
+THROTTLE_TTL=60
+THROTTLE_LIMIT=60
 ```
+
+Monitor the events flow:
+
+![events](./docs/ready-graph.png)
+
+## Load testing
+
+Using [autocannon](https://github.com/mcollina/autocannon) tool
+
+Start server
+`npm run start`
+
+Load test
+`autocannon -c 20 -d 10 -m POST http://127.0.0.1:3000`
+
+Results (60 2xx responses verifies that our rate limiting works)
+
+![load test](./docs/load-test-1.png)
 
 ## License
 
